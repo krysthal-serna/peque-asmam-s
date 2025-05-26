@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pequeñas Mamás</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos generales del cuerpo y la fuente */
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f0f4f8, #d9e2ec); /* Fondo degradado suave */
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        /* Contenedor principal de la aplicación */
+        .container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 15px; /* Bordes redondeados */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Sombra suave */
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* Estilos para el logo */
+        .logo {
+            max-width: 150px; /* Tamaño máximo del logo */
+            height: auto; /* Mantiene la proporción */
+            margin-bottom: 20px; /* Espacio debajo del logo */
+            border-radius: 10px; /* Bordes redondeados para el logo */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08); /* Sombra suave para el logo */
+        }
+
+        h1 {
+            color: #4a5568;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 25px;
+            color: #555;
+        }
+
+        /* Estilos para las secciones de Misión, Visión, Valores */
+        .info-section {
+            background-color: #f7fafc;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 25px;
+            text-align: left;
+            border-left: 5px solid #63b3ed; /* Borde izquierdo para destacar */
+        }
+
+        .info-section h2 {
+            color: #2d3748;
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .info-section p {
+            margin-bottom: 10px;
+            color: #555;
+            font-size: 15px;
+        }
+
+        /* Estilos del formulario */
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #4a5568;
+        }
+
+        input[type="number"],
+        input[type="email"],
+        input[type="tel"],
+        select {
+            width: calc(100% - 20px); /* Ajuste para padding */
+            padding: 12px 10px;
+            margin-top: 5px;
+            border: 1px solid #cbd5e0;
+            border-radius: 8px; /* Bordes redondeados */
+            font-size: 16px;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="number"]:focus,
+        input[type="email"]:focus,
+        input[type="tel"]:focus,
+        select:focus {
+            border-color: #63b3ed; /* Color al enfocar */
+            outline: none;
+        }
+
+        /* Botones generales */
+        button {
+            background-color: #4299e1; /* Color azul vibrante */
+            color: white;
+            padding: 14px 25px;
+            border: none;
+            border-radius: 10px; /* Bordes redondeados */
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease; /* Efecto hover */
+            margin-top: 15px;
+            font-weight: 600;
+        }
+
+        button:hover {
+            background-color: #3182ce; /* Color más oscuro al pasar el cursor */
+            transform: translateY(-2px); /* Ligero levantamiento */
+        }
+
+        /* Estilos para la sección de consejos */
+        #adviceOutput {
+            margin-top: 30px;
+            text-align: left;
+        }
+
+        .advice-card {
+            background-color: #e2e8f0;
+            padding: 25px;
+            border-radius: 12px; /* Bordes redondeados */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08); /* Sombra suave */
+            margin-bottom: 20px;
+            border-left: 5px solid #4299e1; /* Borde izquierdo para destacar */
+        }
+
+        .advice-card h2 {
+            color: #2d3748;
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .advice-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .advice-card li {
+            background-color: #f7fafc;
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: flex-start;
+            font-size: 15px;
+        }
+
+        .advice-card li:last-child {
+            margin-bottom: 0;
+        }
+
+        .advice-card li.do::before {
+            content: '✅'; /* Icono para "Qué hacer" */
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+
+        .advice-card li.dont::before {
+            content: '❌'; /* Icono para "Qué no hacer" */
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+
+        /* Estilos para el botón de WhatsApp */
+        .whatsapp-section {
+            margin-top: 30px;
+        }
+
+        .whatsapp-button {
+            background-color: #25d366; /* Color de WhatsApp */
+            padding: 15px 30px;
+            font-size: 20px;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .whatsapp-button:hover {
+            background-color: #1da851;
+        }
+
+        .whatsapp-button img {
+            width: 25px;
+            height: 25px;
+            margin-right: 10px;
+            border-radius: 5px; /* Bordes redondeados para la imagen */
+        }
+
+        /* Estilos responsivos */
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+
+            button {
+                width: 100%;
+                padding: 12px 20px;
+                font-size: 16px;
+            }
+
+            input[type="number"],
+            input[type="email"],
+            input[type="tel"],
+            select {
+                width: calc(100% - 20px);
+            }
+
+            .whatsapp-button {
+                font-size: 18px;
+                padding: 12px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="https://raw.githubusercontent.com/krysthal-serna/peque-asmam-s/main/ChatGPT%20Image%2026%20may%202025%2C%2013_48_51.png" alt="Logo Pequeñas Mamás" class="logo">
+        <h1>Pequeñas Mamás</h1>
+        <p>Sabemos que ser madre joven y soltera presenta desafíos únicos. Estamos aquí para ofrecerte apoyo y consejos prácticos. Por favor, completa la siguiente información para recibir orientación personalizada.</p>
+
+        <div class="info-section">
+            <h2>Nuestra Misión</h2>
+            <p>Empoderar a madres solteras jóvenes de 12 a 20 años, brindándoles herramientas, información y apoyo emocional para afrontar los desafíos de la maternidad y la crianza de sus hijos sin la presencia de un padre, fomentando su bienestar y el de sus familias.</p>
+        </div>
+
+        <div class="info-section">
+            <h2>Nuestra Visión</h2>
+            <p>Ser la plataforma líder y de confianza para madres solteras jóvenes, creando una comunidad donde se sientan comprendidas, valoradas y equipadas para criar hijos felices y saludables, construyendo un futuro lleno de esperanza y oportunidades.</p>
+        </div>
+
+        <div class="info-section">
+            <h2>Nuestros Valores</h2>
+            <p><strong>Empatía:</strong> Nos ponemos en el lugar de cada madre, comprendiendo sus desafíos y celebrando sus fortalezas.</p>
+            <p><strong>Respeto:</strong> Valoramos la individualidad y las decisiones de cada madre, ofreciendo un espacio seguro y sin juicios.</p>
+            <p><strong>Apoyo:</strong> Brindamos orientación práctica y emocional, fomentando una red de ayuda mutua.</p>
+            <p><strong>Fortaleza:</strong> Inspiramos la resiliencia y la capacidad de superar obstáculos en cada etapa de la maternidad.</p>
+            <p><strong>Esperanza:</strong> Creemos en el potencial de cada madre y en un futuro brillante para ella y su hijo.</p>
+        </div>
+
+        <form id="adviceForm">
+            <div class="form-group">
+                <label for="motherAge">Tu Edad (12-20 años):</label>
+                <input type="number" id="motherAge" min="12" max="20" required>
+            </div>
+
+            <div class="form-group">
+                <label for="childStatus">Estado del Niño:</label>
+                <select id="childStatus" required>
+                    <option value="">Selecciona una opción</option>
+                    <option value="onTheWay">Viene en camino</option>
+                    <option value="born">Ya nació</option>
+                </select>
+            </div>
+
+            <div class="form-group" id="childAgeGroup" style="display: none;">
+                <label for="childAge">Edad del Niño (en años):</label>
+                <input type="number" id="childAge" min="0">
+            </div>
+
+            <div class="form-group">
+                <label for="babyGender">Género del Bebé:</label>
+                <select id="babyGender" required>
+                    <option value="">Selecciona una opción</option>
+                    <option value="male">Masculino</option>
+                    <option value="female">Femenino</option>
+                    <option value="unspecified">Prefiero no especificar</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Tu Correo Electrónico:</label>
+                <input type="email" id="email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Número de Celular:</label>
+                <input type="tel" id="phone" placeholder="Ej: 5215634153973" required>
+            </div>
+
+            <button type="submit">Obtener Consejos</button>
+        </form>
+
+        <div id="adviceOutput">
+            </div>
+
+        <div class="whatsapp-section">
+            <p>¿Necesitas hablar con alguien? Contáctanos por WhatsApp:</p>
+            <a href="https://wa.me/5215634153973" target="_blank" class="whatsapp-button">
+                <img src="https://placehold.co/25x25/25d366/ffffff?text=WA" alt="WhatsApp Icon">
+                Enviar Mensaje por WhatsApp
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Obtener referencias a los elementos del DOM
+        const adviceForm = document.getElementById('adviceForm');
+        const motherAgeInput = document.getElementById('motherAge');
+        const childStatusSelect = document.getElementById('childStatus');
+        const childAgeGroup = document.getElementById('childAgeGroup');
+        const childAgeInput = document.getElementById('childAge');
+        const adviceOutput = document.getElementById('adviceOutput');
+
+        // Mostrar u ocultar el campo de edad del niño según la selección
+        childStatusSelect.addEventListener('change', function() {
+            if (this.value === 'born') {
+                childAgeGroup.style.display = 'block';
+                childAgeInput.setAttribute('required', 'true'); // Hacerlo requerido si el niño ya nació
+            } else {
+                childAgeGroup.style.display = 'none';
+                childAgeInput.removeAttribute('required');
+                childAgeInput.value = ''; // Limpiar el valor si se oculta
+            }
+        });
+
+        // Manejar el envío del formulario
+        adviceForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevenir el envío por defecto del formulario
+
+            // Obtener los valores de los campos
+            const motherAge = parseInt(motherAgeInput.value);
+            const childStatus = childStatusSelect.value;
+            const childAge = childAgeInput.value ? parseInt(childAgeInput.value) : null;
+            const babyGender = document.getElementById('babyGender').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+
+            // Validar la edad de la madre
+            if (motherAge < 12 || motherAge > 20) {
+                adviceOutput.innerHTML = '<div class="advice-card" style="border-left-color: #e53e3e;"><h2 style="color: #e53e3e;">Error de Edad</h2><p>Por favor, ingresa una edad de madre entre 12 y 20 años.</p></div>';
+                return;
+            }
+
+            let adviceHtml = '';
+
+            // Generar consejos basados en el estado del niño
+            if (childStatus === 'onTheWay') {
+                adviceHtml = `
+                    <div class="advice-card">
+                        <h2>Consejos para el Embarazo (Viene en Camino)</h2>
+                        <h3>Qué Hacer:</h3>
+                        <ul>
+                            <li class="do">Busca atención prenatal temprana y regular. Es crucial para tu salud y la del bebé.</li>
+                            <li class="do">Aliméntate de forma saludable y toma vitaminas prenatales.</li>
+                            <li class="do">Descansa lo suficiente y evita el estrés.</li>
+                            <li class="do">Infórmate sobre el parto y la lactancia.</li>
+                            <li class="do">Busca grupos de apoyo para madres jóvenes o solteras. No estás sola.</li>
+                            <li class="do">Prepara el espacio para el bebé con anticipación.</li>
+                            <li class="do">Habla con tu bebé en el vientre; crea un vínculo desde ahora.</li>
+                        </ul>
+                        <h3>Qué No Hacer:</h3>
+                        <ul>
+                            <li class="dont">No consumas alcohol, tabaco ni drogas ilícitas.</li>
+                            <li class="dont">No te automediques sin consultar a un médico.</li>
+                            <li class="dont">No ignores señales de alerta o síntomas inusuales.</li>
+                            <li class="dont">No te aísles; busca apoyo emocional en familiares o amigos de confianza.</li>
+                            <li class="dont">No te compares con otras embarazadas; cada experiencia es única.</li>
+                        </ul>
+                    </div>
+                `;
+            } else if (childStatus === 'born') {
+                adviceHtml = `
+                    <div class="advice-card">
+                        <h2>Consejos para la Crianza sin un Padre (El Niño Ya Nació)</h2>
+                        <h3>Qué Hacer:</h3>
+                        <ul>
+                            <li class="do">Establece una rutina estable para ti y tu hijo.</li>
+                            <li class="do">Fomenta la comunicación abierta y honesta con tu hijo.</li>
+                            <li class="do">Busca modelos a seguir positivos (tíos, abuelos, mentores) para tu hijo.</li>
+                            <li class="do">Prioriza el autocuidado; necesitas estar bien para cuidar a tu hijo.</li>
+                            <li class="do">Busca apoyo en tu comunidad, amigos o familiares.</li>
+                            <li class="do">Celebra los logros de tu hijo, grandes y pequeños.</li>
+                            <li class="do">Sé honesta con tu hijo sobre la ausencia del padre, de una manera apropiada para su edad.</li>
+                            <li class="do">Enséñale a tu hijo sobre el amor propio y la resiliencia.</li>
+                        </ul>
+                        <h3>Qué No Hacer:</h3>
+                        <ul>
+                            <li class="dont">No hables negativamente del padre ausente frente a tu hijo.</li>
+                            <li class="dont">No intentes ser "padre y madre" al mismo tiempo; sé la mejor madre que puedas ser.</li>
+                            <li class="dont">No te sientas culpable por la situación; enfócate en el presente y el futuro.</li>
+                            <li class="dont">No descuides tu educación o desarrollo personal.</li>
+                            <li class="dont">No temas pedir ayuda cuando la necesites.</li>
+                        </ul>
+                    </div>
+                `;
+            } else {
+                adviceHtml = '<div class="advice-card" style="border-left-color: #e53e3e;"><h2 style="color: #e53e3e;">Error de Selección</h2><p>Por favor, selecciona si el niño viene en camino o ya nació.</p></div>';
+            }
+
+            // Mostrar los consejos en la página
+            adviceOutput.innerHTML = adviceHtml;
+
+            // Opcional: Desplazarse a la sección de consejos después de generarlos
+            adviceOutput.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+    </script>
+</body>
+</html>
